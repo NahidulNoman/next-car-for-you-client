@@ -3,7 +3,7 @@ import React from "react";
 const Footer = () => {
   return (
     <div className="mt-16">
-      <footer className="footer p-10 bg-amber-200 text-white font-semibold rounded-md mb-2">
+      <footer className="footer p-10 bg-accent text-white font-semibold rounded-md mb-2">
         <div className="lg:mt-20">
           <p>
             ACME Industries Ltd.

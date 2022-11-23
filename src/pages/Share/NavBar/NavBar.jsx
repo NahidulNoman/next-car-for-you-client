@@ -16,7 +16,7 @@ const NavBar = () => {
         </Link>
       </li>
       <li className="font-semibold">
-        <Link to="/about" className="rounded-lg">
+        <Link to="/login" className="rounded-lg">
           Log In
         </Link>
       </li>
@@ -24,7 +24,7 @@ const NavBar = () => {
   );
 
   return (
-    <div className="navbar bg-light-100 rounded-lg flex justify-between">
+    <div className="navbar bg-white shadow-sm rounded-lg flex justify-between">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -51,7 +51,7 @@ const NavBar = () => {
           </ul>
         </div>
         <Link to="/" className="btn btn-ghost normal-case text-xl">
-          Hit The Road
+        Next Car For You
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
