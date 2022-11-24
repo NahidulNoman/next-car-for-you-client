@@ -7,12 +7,36 @@ const AddAProduct = () => {
     const productName = form.productName.value;
     const price = form.price.value;
     const mobile = form.mobile.value;
-    const select = form.select.value;
+    const condition = form.condition.value;
     const location = form.location.value;
     const purchase = form.purchase.value;
     const description = form.description.value;
 
-    console.log(productName, price, select, mobile, location,description,purchase);
+    const productDetails = {
+        productName,
+        price,
+        mobile,
+        condition,
+        location,
+        purchase,
+        description
+    };
+
+    fetch('http://localhost:5000/addProduct', {
+        method : 'POST',
+        headers : {
+            'content-type' : 'application/json'
+        },
+        body : JSON.stringify(productDetails)
+    })
+    .then(res => res.json())
+    .then(data => {
+        if(data.acknowledged){
+            alert('submit is success')
+        }
+    })
+
+    console.log(productDetails);
   };
 
   return (
@@ -59,7 +83,7 @@ const AddAProduct = () => {
           <label className="label">
             <span className="label-text font-semibold">Product Condition</span>
           </label>
-          <select name="select" className="select input-bordered">
+          <select name="condition" className="select input-bordered">
             <option>Excellent</option>
             <option>Good</option>
             <option>Fair</option>
