@@ -1,10 +1,11 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../../../UserContext/UserContext";
+import toast from 'react-hot-toast';
 
 const CategoryModal = ({catDetails}) => {
   const { user } = useContext(AuthContext);
   const {name,resale_price} = catDetails;
-  console.log(catDetails)
+  // console.log(catDetails)
   const handlerBooking = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -15,11 +16,28 @@ const CategoryModal = ({catDetails}) => {
     const name = form.name.value;
     const location = form.location.value;
 
-    console.log(phone,email,item,price,name,location)
     const booking = {
         phone,
         email,
+        item,
+        price,
+        name,
+        location
     };
+    fetch('http://localhost:5000/bookings', {
+      method : 'POST',
+      headers : {
+        'content-type' : 'application/json'
+      },
+      body : JSON.stringify(booking)
+    })
+    .then(res => res.json())
+    .then(data => {
+      if(data.acknowledged){
+        toast.success('Successfully toasted!')
+      }
+    })
+    // console.log(booking)
     
   };
   

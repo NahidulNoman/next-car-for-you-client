@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import CategoryModal from "./CategoryModal";
 
 const CategoryDetails = ({ catDetails }) => {
+  // const [modal , setModal] = useState(null);
     const {img,location,name,original_price,posted_time,resale_price,years_used,} = catDetails;
-    // const [modal , setModal] = useState(null);
   return (
     <div className="hero bg-white mt-10 rounded-md mb-10">
       <div className="hero-content flex-col lg:flex-row">

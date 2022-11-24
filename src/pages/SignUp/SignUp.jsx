@@ -1,10 +1,15 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../../UserContext/UserContext";
 import loginImg from "../../assets/login.png";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const SignUp = () => {
   const { createUser,userUpdateInfo,signInGoogle } = useContext(AuthContext);
+
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const from = location.state?.from?.pathname || '/';
 
     const handlerSubmit = (event) => {
         event.preventDefault();
@@ -32,7 +37,9 @@ const SignUp = () => {
         displayName : name,
       }
       userUpdateInfo(profile)
-      .then(() => {})
+      .then(() => {
+        navigate(from , {replace : true});
+      })
       .catch(error => console.log(error))
     };
 
@@ -42,6 +49,7 @@ const SignUp = () => {
       .then(result => {
         const user = result.user;
         console.log(user);
+        navigate(from , {replace : true});
       })
       .catch(error => {
         console.log(error);
@@ -88,7 +96,7 @@ const SignUp = () => {
                 <span className="label-text font-semibold">Select</span>
               </label>
               <select name="select" className="select input-bordered">
-                <option>User</option>
+                <option>Buyer</option>
                 <option>Seller</option>
               </select>
             </div>
