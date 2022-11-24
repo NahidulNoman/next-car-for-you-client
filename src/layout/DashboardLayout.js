@@ -1,0 +1,40 @@
+import React from "react";
+import { Link, Outlet } from "react-router-dom";
+import NavBar from "../pages/Share/NavBar/NavBar";
+
+const dashboardLayout = () => {
+  return (
+    <div>
+      <NavBar></NavBar>
+      <div className="drawer drawer-mobile">
+        <input
+          id="dashboard-drawer"
+          type="checkbox"
+          className="drawer-toggle"
+        />
+        <div className="drawer-content">
+          <Outlet></Outlet>
+        </div>
+        <div className="drawer-side">
+          <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
+          <ul className="menu p-4 w-80 bg-white lg:bg-base-100 text-base-content">
+            <li>
+              <Link to='/dashboard/myOrder'>My Orders</Link>
+            </li>
+            <li>
+              <Link to='/dashboard/addProduct'>Add Product</Link>
+            </li>
+            <li>
+              <Link to='/dashboard/myProduct'>My Products</Link>
+            </li>
+            <li>
+              <Link to='/dashboard/allSeller'>All Seller</Link>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default dashboardLayout;

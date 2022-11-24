@@ -21,6 +21,11 @@ const NavBar = () => {
           Blog
         </Link>
       </li>
+      <li className="font-semibold">
+        <Link to="/dashboard" className="rounded-lg">
+        DashBoard
+        </Link>
+      </li>
       {user?.email ? (
         <>
           <li onClick={handlerLogOut} className="font-semibold">
@@ -61,7 +66,7 @@ const NavBar = () => {
           </label>
           <ul
             tabIndex={1}
-            className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+            className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-white rounded-box w-52"
           >
             {menuItems}
           </ul>
