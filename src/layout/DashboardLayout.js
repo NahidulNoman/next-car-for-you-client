@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, Outlet } from "react-router-dom";
+import Footer from "../pages/Share/Footer/Footer";
 import NavBar from "../pages/Share/NavBar/NavBar";
 
 const dashboardLayout = () => {
@@ -33,6 +34,7 @@ const dashboardLayout = () => {
           </ul>
         </div>
       </div>
+      <Footer></Footer>
     </div>
   );
 };
