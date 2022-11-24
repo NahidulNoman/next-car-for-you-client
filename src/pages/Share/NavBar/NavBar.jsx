@@ -66,7 +66,7 @@ const NavBar = () => {
             {menuItems}
           </ul>
         </div>
-        <Link to="/" className="btn btn-ghost normal-case text-xl">
+        <Link to="/" className="btn btn-ghost text-accent normal-case text-xl">
           Next Car For You
         </Link>
       </div>
