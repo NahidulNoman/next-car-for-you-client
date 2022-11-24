@@ -4,7 +4,7 @@ import loginImg from "../../assets/login.png";
 import { Link } from "react-router-dom";
 
 const SignUp = () => {
-  const { user } = useContext(AuthContext);
+  const { createUser,userUpdateInfo,signInGoogle } = useContext(AuthContext);
 
     const handlerSubmit = (event) => {
         event.preventDefault();
@@ -14,7 +14,38 @@ const SignUp = () => {
         const select = form.select.value;
         const password = form.password.value;
         
+        createUser(email,password)
+        .then(result => {
+          const user = result.user;
+          console.log(user);
+          updateUserName(name);
+        })
+        .catch(error => {
+          console.log(error)
+        })
         console.log(name,email,select,password)
+    };
+    
+    // update user name
+    const updateUserName = name => {
+      const profile = {
+        displayName : name,
+      }
+      userUpdateInfo(profile)
+      .then(() => {})
+      .catch(error => console.log(error))
+    };
+
+     // sign in with google
+     const handlerGoogle = () => {
+      signInGoogle()
+      .then(result => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch(error => {
+        console.log(error);
+      })
     }
 
   return (
@@ -88,7 +119,7 @@ const SignUp = () => {
 
             <div className="divider">OR</div>
 
-            <button className="btn btn-outline w-full">
+            <button onClick={handlerGoogle} className="btn btn-outline w-full">
               CONTINUE WITH GOOGLE
             </button>
             

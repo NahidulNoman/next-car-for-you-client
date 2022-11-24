@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import loginImg from '../../assets/login.png';
+import { AuthContext } from '../../UserContext/UserContext';
 
 const Login = () => {
+  const {logUser,signInGoogle} = useContext(AuthContext);
 
     const handlerLogin = (event) => {
         event.preventDefault();
@@ -10,9 +12,29 @@ const Login = () => {
         const email = form.email.value;
         const password = form.password.value;
         
-        console.log(email,password)
-    }
+        logUser(email,password)
+        .then(result => {
+          const user = result.user;
+          console.log(user);
+        })
+        .catch(error => {
+          console.log(error);
+        })
 
+        console.log(email,password)
+    };
+
+    // sign in with google
+    const handlerGoogle = () => {
+      signInGoogle()
+      .then(result => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch(error => {
+        console.log(error);
+      })
+    }
 
     return (
         <div >
@@ -63,7 +85,7 @@ const Login = () => {
 
             <div className="divider">OR</div>
 
-            <button className="btn btn-outline w-full">
+            <button onClick={handlerGoogle} className="btn btn-outline w-full">
               CONTINUE WITH GOOGLE
             </button>
             
