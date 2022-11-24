@@ -1,13 +1,14 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const HomeCategory = ({ category }) => {
   const { category_name, category_id } = category;
   return (
-    <div className="card w-96 bg-base-100 shadow-xl">
+    <div className="card bg-white shadow-xl">
       <div className="card-body">
         <h2 className="card-title">Brand : {category_name}</h2>
         <div className="card-actions justify-end">
-          <button className="btn btn-primary">Details Category</button>
+          <Link to={`/categories/${category_id}`}><button className="btn btn-primary">Details Category</button></Link>
         </div>
       </div>
     </div>
