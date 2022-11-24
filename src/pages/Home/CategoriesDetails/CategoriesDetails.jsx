@@ -1,17 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useLoaderData } from 'react-router-dom';
 import CategoryDetails from './CategoryDetails';
-import CategoryModal from './CategoryModal';
 
 const CategoriesDetails = () => {
-    const [modal , setModal] = useState({});
     const categoriesDetails = useLoaderData();
 
-    console.log(modal);
-    console.log(categoriesDetails)
+    
+    // console.log(categoriesDetails)
     return (
         <div className='mx-5'>
-            <h3>Your Selected Car Details</h3>
+            <h3 className='text-3xl font-bold text-accent mt-10'>Your Selected Car Details</h3>
             <div>
                 {
                     categoriesDetails.map(catDetails => <CategoryDetails

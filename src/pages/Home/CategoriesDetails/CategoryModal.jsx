@@ -29,23 +29,22 @@ const CategoryModal = ({catDetails}) => {
       <div className="modal ">
         <div className="modal-box bg-white">
           <h3 className="font-bold text-lg">
-            Congratulations random Internet user!
           </h3>
           <form onSubmit={handlerBooking} className="py-4">
             <input
               type="text"
               name="item"
               defaultValue={name}
-              placeholder="item name"
-              className="input input-bordered input-accent w-full mb-3"
+              disabled
+              className="input input-bordered input-accent font-semibold w-full mb-3"
             />{" "}
             <br />
             <input
               type="text"
               name="price"
               defaultValue={resale_price}
-              placeholder="price"
-              className="input input-bordered input-accent w-full mb-3"
+              disabled
+              className="input input-bordered input-accent font-semibold w-full mb-3"
             />{" "}
             <br />
             <input
@@ -53,8 +52,7 @@ const CategoryModal = ({catDetails}) => {
               name="name"
               disabled
               defaultValue={user?.displayName}
-              placeholder="your name"
-              className="input input-bordered input-accent w-full mb-3"
+              className="input input-bordered font-semibold input-accent w-full mb-3"
             />{" "}
             <br />
             <input
@@ -62,22 +60,21 @@ const CategoryModal = ({catDetails}) => {
               name="email"
               disabled
               defaultValue={user?.email}
-              placeholder="email address"
-              className="input input-bordered input-accent w-full mb-3"
+              className="input input-bordered font-semibold input-accent w-full mb-3"
             />{" "}
             <br />
             <input
               type="phone"
               name="phone"
               placeholder="phone number"
-              className="input input-bordered input-accent w-full mb-3"
+              className="input input-bordered font-semibold input-accent w-full mb-3"
             />{" "}
             <br />
             <input
               type="location"
               name="location"
               placeholder="Meeting Location"
-              className="input input-bordered input-accent w-full mb-3"
+              className="input input-bordered font-semibold input-accent w-full mb-3"
             />{" "}
             <br />
             <input
