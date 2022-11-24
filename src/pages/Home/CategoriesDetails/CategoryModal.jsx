@@ -5,7 +5,9 @@ import toast from 'react-hot-toast';
 const CategoryModal = ({catDetails}) => {
   const { user } = useContext(AuthContext);
   const {name,resale_price,img} = catDetails;
+
   console.log(catDetails)
+
   const handlerBooking = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -39,7 +41,6 @@ const CategoryModal = ({catDetails}) => {
       }
     })
     // console.log(booking)
-    
   };
   
   return (

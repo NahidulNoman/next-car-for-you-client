@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import CategoryDetails from './CategoryDetails';
 
 const CategoriesDetails = () => {
     const categoriesDetails = useLoaderData();
-
+    const [modal , setModal] = useState(null);
     
     // console.log(categoriesDetails)
     return (
