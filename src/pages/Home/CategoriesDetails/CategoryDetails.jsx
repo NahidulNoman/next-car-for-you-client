@@ -2,23 +2,34 @@ import React from "react";
 import CategoryModal from "./CategoryModal";
 
 const CategoryDetails = ({ catDetails }) => {
-    const {img,location,name,original_price,posted_time,resale_price,years_used,} = catDetails;
+    const {image,location,name,description,condition,purchase,original_price,mobile,posted_time,price,years_used,} = catDetails;
+    console.log(catDetails);
   return (
     <div className="hero bg-white mt-10 rounded-md mb-10">
       <div className="hero-content flex-col lg:flex-row">
-        <img src={img} className="lg:w-1/2 rounded-lg shadow-2xl" alt="" />
+        <img src={image} className="lg:w-1/2 rounded-lg shadow-2xl" alt="" />
         <div className="lg:w-1/2">
           <h1 className="text-4xl font-bold">{name}</h1>
           <p className="py-6">
+            <p className="mb-3 font-semibold">{
+              description ? description.slice(0,100)+'... see more': 'NO DESCRIPTION ADDED'
+            }</p>
             <h2 className="text-md font-semibold">Location : {location}</h2>
             <h2 className="text-md font-semibold">
-              Sale Price : {resale_price}$
+              Sale Price : {price}$
+            </h2>
+            <h2 className="text-md font-semibold">
+              Product Condition : {condition}
             </h2>
             <h2 className="text-md font-semibold">
               Original Price : {original_price}$
             </h2>
-            <h2 className="text-md font-semibold">Total Used : {years_used}</h2>
-            <h2 className="text-md font-semibold">Post Time : {posted_time}</h2>
+            <h2 className="text-md font-semibold">
+              Mobile : {mobile}
+            </h2>
+            <h2 className="text-md font-semibold">Year Of Used : {years_used} years</h2>
+            <h2 className="text-md font-semibold">Post Date : {posted_time}</h2>
+            <h2 className="text-md font-semibold">Purchase Date : {purchase}</h2>
           </p>
           <label htmlFor="category-modal" className="btn">
             open modal

@@ -8,6 +8,7 @@ const AddAProduct = () => {
     const price = form.price.value;
     const mobile = form.mobile.value;
     const condition = form.condition.value;
+    const category_id = form.category.value;
     const location = form.location.value;
     const purchase = form.purchase.value;
     const description = form.description.value;
@@ -17,6 +18,7 @@ const AddAProduct = () => {
         price,
         mobile,
         condition,
+        category_id ,
         location,
         purchase,
         description
@@ -89,6 +91,19 @@ const AddAProduct = () => {
             <option>Fair</option>
           </select>
         </div>
+
+
+        <div className="form-control w-full">
+          <label className="label">
+            <span className="label-text font-semibold">Product Category</span>
+          </label>
+          <select name="category" className="select input-bordered">
+            <option>Audi</option>
+            <option>Ferrari</option>
+            <option>Mercedes</option>
+          </select>
+        </div>
+
 
         <div className="form-control mb-4">
           <label className="label">
