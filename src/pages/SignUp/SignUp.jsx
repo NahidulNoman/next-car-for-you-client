@@ -23,7 +23,7 @@ const SignUp = () => {
         .then(result => {
           const user = result.user;
           console.log(user);
-          updateUserName(name);
+          updateUserName(name,select,email);
         })
         .catch(error => {
           console.log(error)
@@ -32,15 +32,49 @@ const SignUp = () => {
     };
     
     // update user name
-    const updateUserName = name => {
+    const updateUserName = (name,select,email) => {
       const profile = {
         displayName : name,
       }
       userUpdateInfo(profile)
       .then(() => {
-        navigate(from , {replace : true});
+        getUserRole(name,select,email);
       })
       .catch(error => console.log(error))
+    };
+
+    // sign up role form 
+    const getUserRole = (name,select,email) => {
+      const users = {
+        name : name,
+        role : select,
+        email : email
+      };
+      fetch('http://localhost:5000/users', {
+        method : 'POST',
+        headers : {
+          'content-type' : 'application/json'
+        },
+        body : JSON.stringify(users)
+      })
+      .then(res => res.json())
+      .then(data => {
+        if(data.acknowledged){
+          getUserToken(email)
+        };
+      })
+    };
+
+     // get access token
+    const getUserToken = email => {
+      fetch(`http://localhost:5000/jwt?email=${email}`)
+      .then(res => res.json())
+      .then(data => {
+        if(data.accessToken){
+          localStorage.setItem('token', data.accessToken);
+          navigate(from , {replace : true});
+        }
+      })
     };
 
      // sign in with google
@@ -54,7 +88,7 @@ const SignUp = () => {
       .catch(error => {
         console.log(error);
       })
-    }
+    };
 
   return (
     <div >

@@ -4,7 +4,7 @@ const AddAProduct = () => {
   const handlerAddProduct = (event) => {
     event.preventDefault();
     const form = event.target;
-    const productName = form.productName.value;
+    const name = form.name.value;
     const price = form.price.value;
     const mobile = form.mobile.value;
     const condition = form.condition.value;
@@ -13,7 +13,7 @@ const AddAProduct = () => {
     const description = form.description.value;
 
     const productDetails = {
-        productName,
+        name,
         price,
         mobile,
         condition,
@@ -49,7 +49,7 @@ const AddAProduct = () => {
           </label>
           <input
             type="text"
-            name="productName"
+            name="name"
             placeholder="Product Name"
             className="input input-bordered"
           />
