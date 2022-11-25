@@ -1,7 +1,6 @@
 import React from "react";
-import CategoryModal from "./CategoryModal";
 
-const CategoryDetails = ({ catDetails }) => {
+const CategoryDetails = ({ catDetails,setModal }) => {
     const {image,location,name,description,condition,purchase,original_price,mobile,posted_time,price,years_used,} = catDetails;
     console.log(catDetails);
   return (
@@ -31,12 +30,14 @@ const CategoryDetails = ({ catDetails }) => {
             <h2 className="text-md font-semibold">Post Date : {posted_time}</h2>
             <h2 className="text-md font-semibold">Purchase Date : {purchase}</h2>
           </p>
-          <label htmlFor="category-modal" className="btn">
-            open modal
+          <label
+          onClick={()=> setModal(catDetails)}
+          htmlFor="category-modal" className="btn">
+            Book Now
           </label>
         </div>
       </div>
-      <CategoryModal catDetails={catDetails}></CategoryModal>
+     
     </div>
   );
 };

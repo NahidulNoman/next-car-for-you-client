@@ -10,6 +10,7 @@ const AddAProduct = () => {
     const condition = form.condition.value;
     const category_id = form.category.value;
     const location = form.location.value;
+    const image = form.image.value;
     const purchase = form.purchase.value;
     const description = form.description.value;
 
@@ -18,27 +19,29 @@ const AddAProduct = () => {
         price,
         mobile,
         condition,
+        image,
         category_id ,
         location,
         purchase,
         description
     };
+    console.log(productDetails)
 
-    fetch('http://localhost:5000/addProduct', {
-        method : 'POST',
-        headers : {
-            'content-type' : 'application/json'
-        },
-        body : JSON.stringify(productDetails)
-    })
-    .then(res => res.json())
-    .then(data => {
-        if(data.acknowledged){
-            alert('submit is success')
-        }
-    })
+    // fetch('http://localhost:5000/addProduct', {
+    //     method : 'POST',
+    //     headers : {
+    //         'content-type' : 'application/json'
+    //     },
+    //     body : JSON.stringify(productDetails)
+    // })
+    // .then(res => res.json())
+    // .then(data => {
+    //     if(data.acknowledged){
+    //         alert('submit is success')
+    //     }
+    // })
 
-    console.log(productDetails);
+    // console.log(productDetails);
   };
 
   return (
@@ -126,6 +129,18 @@ const AddAProduct = () => {
             name="purchase"
             placeholder="Year of purchase"
             className="input input-bordered"
+          />
+        </div>
+
+        <div className="form-control mb-4">
+          <label className="label">
+            <span className="label-text font-semibold">Image</span>
+          </label>
+          <input
+            type="file"
+            name="image"
+            placeholder="Location"
+            className="file-input file-input-bordered"
           />
         </div>
 

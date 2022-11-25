@@ -2,11 +2,11 @@ import React, { useContext } from "react";
 import { AuthContext } from "../../../UserContext/UserContext";
 import toast from 'react-hot-toast';
 
-const CategoryModal = ({catDetails}) => {
+const CategoryModal = ({modal,setModal}) => {
   const { user } = useContext(AuthContext);
-  const {name,resale_price,img} = catDetails;
+  const {name,price,image} = modal;
 
-  console.log(catDetails)
+  console.log(modal)
 
   const handlerBooking = (event) => {
     event.preventDefault();
@@ -25,7 +25,7 @@ const CategoryModal = ({catDetails}) => {
         price,
         name,
         location,
-        img
+        image
     };
     fetch('http://localhost:5000/bookings', {
       method : 'POST',
@@ -37,7 +37,8 @@ const CategoryModal = ({catDetails}) => {
     .then(res => res.json())
     .then(data => {
       if(data.acknowledged){
-        toast.success('Successfully toasted!')
+        toast.success('Successfully toasted!');
+        setModal(null);
       }
     })
     // console.log(booking)
@@ -62,7 +63,7 @@ const CategoryModal = ({catDetails}) => {
             <input
               type="text"
               name="price"
-              defaultValue={resale_price}
+              defaultValue={price}
               disabled
               className="input input-bordered input-accent font-semibold w-full mb-3"
             />{" "}
@@ -98,18 +99,11 @@ const CategoryModal = ({catDetails}) => {
             />{" "}
             <br />
             <input
-            
               className="btn btn-accent w-full"
               type="submit"
               value="Submit"
             />
           </form>
-            <label  htmlFor="category-modal" className="btn">
-              Booked
-            </label>
-          {/* <div className="modal-action">
-            
-          </div> */}
         </div>
       </div>
     </>
