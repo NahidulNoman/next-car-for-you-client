@@ -1,7 +1,7 @@
 import React from "react";
 
 const CategoryDetails = ({ catDetails,setModal }) => {
-    const {image,location,name,description,condition,purchase,original_price,mobile,posted_time,price,years_used,} = catDetails;
+    const {image,location,sellerName,name,description,condition,purchase,original_price,mobile,posted_time,price,years_used,} = catDetails;
     console.log(catDetails);
   return (
     <div className="hero bg-white mt-10 rounded-md mb-10">
@@ -13,6 +13,7 @@ const CategoryDetails = ({ catDetails,setModal }) => {
             <p className="mb-3 font-semibold">{
               description ? description.slice(0,100)+'... see more': 'NO DESCRIPTION ADDED'
             }</p>
+            <h2 className="text-md font-semibold">Seller Name : {sellerName}</h2>
             <h2 className="text-md font-semibold">Location : {location}</h2>
             <h2 className="text-md font-semibold">
               Sale Price : {price}$

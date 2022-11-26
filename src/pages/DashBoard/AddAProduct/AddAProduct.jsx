@@ -1,10 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../../UserContext/UserContext";
 
 const AddAProduct = () => {
+  const {user} = useContext(AuthContext);
+  const navigate = useNavigate();
+
   const handlerAddProduct = (event) => {
     event.preventDefault();
     const form = event.target;
     const name = form.name.value;
+    const email = user?.email;
+    const sellerName = user?.displayName;
     const price = form.price.value;
     const mobile = form.mobile.value;
     const condition = form.condition.value;
@@ -19,27 +27,31 @@ const AddAProduct = () => {
         price,
         mobile,
         condition,
+        email,
+        sellerName,
         image,
         category_id ,
         location,
         purchase,
         description
     };
+    
     console.log(productDetails)
 
-    // fetch('http://localhost:5000/addProduct', {
-    //     method : 'POST',
-    //     headers : {
-    //         'content-type' : 'application/json'
-    //     },
-    //     body : JSON.stringify(productDetails)
-    // })
-    // .then(res => res.json())
-    // .then(data => {
-    //     if(data.acknowledged){
-    //         alert('submit is success')
-    //     }
-    // })
+    fetch('http://localhost:5000/addProduct', {
+        method : 'POST',
+        headers : {
+            'content-type' : 'application/json'
+        },
+        body : JSON.stringify(productDetails)
+    })
+    .then(res => res.json())
+    .then(data => {
+        if(data.acknowledged){
+            toast.success('your product successfully added!!');
+            navigate('/dashboard/myProduct')
+        }
+    })
 
     // console.log(productDetails);
   };
@@ -132,7 +144,7 @@ const AddAProduct = () => {
           />
         </div>
 
-        <div className="form-control mb-4">
+        {/* <div className="form-control mb-4">
           <label className="label">
             <span className="label-text font-semibold">Image</span>
           </label>
@@ -141,6 +153,18 @@ const AddAProduct = () => {
             name="image"
             placeholder="Location"
             className="file-input file-input-bordered"
+          />
+        </div> */}
+
+        <div className="form-control mb-4">
+          <label className="label">
+            <span className="label-text font-semibold">Image url</span>
+          </label>
+          <input
+            type="text"
+            name="image"
+            placeholder="Image url"
+            className="input input-bordered"
           />
         </div>
 
