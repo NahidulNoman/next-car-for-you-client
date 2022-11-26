@@ -1,7 +1,7 @@
 import React from 'react';
 
 const MyOrderRow = ({book}) => {
-    const {img,item,price} = book;
+    const {image,item,price,email} = book;
     return (
         <tr>
             <th>
@@ -11,7 +11,7 @@ const MyOrderRow = ({book}) => {
                 <div className="avatar">
                   <div className="mask mask-squircle w-12 h-12">
                     <img
-                      src={img}
+                      src={image}
                       alt="Avatar Tailwind CSS Component"
                     />
                   </div>
@@ -20,6 +20,9 @@ const MyOrderRow = ({book}) => {
             </td>
             <td>
             {item}
+            </td>
+            <td>
+            {email}
             </td>
             <td>{price}$</td>
             <th>

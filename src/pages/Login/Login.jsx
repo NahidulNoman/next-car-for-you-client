@@ -1,15 +1,21 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import loginImg from '../../assets/login.png';
+import useToken from '../../hooks/useToken';
 import { AuthContext } from '../../UserContext/UserContext';
 
 const Login = () => {
   const {logUser,signInGoogle} = useContext(AuthContext);
+  const [logInEmail , setLogInEmail] = useState('');
   const location = useLocation();
   const navigate = useNavigate();
-
-
+  const [token] = useToken(logInEmail)
   const from = location.state?.from?.pathname || '/';
+
+  if(token) {
+    navigate(from , {replace : true});
+  }
+
     const handlerLogin = (event) => {
         event.preventDefault();
         const form = event.target;
@@ -20,7 +26,7 @@ const Login = () => {
         .then(result => {
           const user = result.user;
           console.log(user);
-          navigate(from , {replace : true});
+          setLogInEmail(email);
         })
         .catch(error => {
           console.log(error);

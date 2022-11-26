@@ -1,15 +1,21 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { AuthContext } from "../../UserContext/UserContext";
 import loginImg from "../../assets/login.png";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import useToken from "../../hooks/useToken";
 
 const SignUp = () => {
   const { createUser,userUpdateInfo,signInGoogle } = useContext(AuthContext);
-
+  const [createdUserEmail, setCreatedUserEmail] = useState('')
+  
+  const [token] = useToken(createdUserEmail);
   const location = useLocation();
   const navigate = useNavigate();
 
   const from = location.state?.from?.pathname || '/';
+  if(token) {
+    navigate(from , {replace : true});
+  }
 
     const handlerSubmit = (event) => {
         event.preventDefault();
@@ -60,22 +66,22 @@ const SignUp = () => {
       .then(res => res.json())
       .then(data => {
         if(data.acknowledged){
-          getUserToken(email)
+          setCreatedUserEmail(email);
         };
       })
     };
 
      // get access token
-    const getUserToken = email => {
-      fetch(`http://localhost:5000/jwt?email=${email}`)
-      .then(res => res.json())
-      .then(data => {
-        if(data.accessToken){
-          localStorage.setItem('token', data.accessToken);
-          navigate(from , {replace : true});
-        }
-      })
-    };
+    // const getUserToken = email => {
+    //   fetch(`http://localhost:5000/jwt?email=${email}`)
+    //   .then(res => res.json())
+    //   .then(data => {
+    //     if(data.accessToken){
+    //       localStorage.setItem('token', data.accessToken);
+    //       navigate(from , {replace : true});
+    //     }
+    //   })
+    // };
 
      // sign in with google
      const handlerGoogle = () => {
@@ -149,7 +155,7 @@ const SignUp = () => {
 
             <input
               className="btn btn-accent w-full"
-              value="Login"
+              value="Sign Up"
               type="submit"
             />
             <p className="text-sm text-center mt-3">

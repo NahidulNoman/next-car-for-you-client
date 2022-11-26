@@ -1,12 +1,12 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../../../UserContext/UserContext";
-import toast from 'react-hot-toast';
+import toast from "react-hot-toast";
 
-const CategoryModal = ({modal,setModal}) => {
+const CategoryModal = ({ modal, setModal }) => {
   const { user } = useContext(AuthContext);
-  const {name,price,image} = modal;
+  const { name, price, image } = modal;
 
-  console.log(modal)
+  // console.log(modal);
 
   const handlerBooking = (event) => {
     event.preventDefault();
@@ -19,38 +19,43 @@ const CategoryModal = ({modal,setModal}) => {
     const location = form.location.value;
 
     const booking = {
-        phone,
-        email,
-        item,
-        price,
-        name,
-        location,
-        image
+      phone,
+      email,
+      item,
+      price,
+      name,
+      location,
+      image,
     };
-    fetch('http://localhost:5000/bookings', {
-      method : 'POST',
-      headers : {
-        'content-type' : 'application/json'
+    fetch("http://localhost:5000/bookings", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
       },
-      body : JSON.stringify(booking)
+      body: JSON.stringify(booking),
     })
-    .then(res => res.json())
-    .then(data => {
-      if(data.acknowledged){
-        toast.success('Successfully toasted!');
-        setModal(null);
-      }
-    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.acknowledged) {
+          toast.success("Successfully toasted!");
+          setModal(null);
+        }
+      });
     // console.log(booking)
   };
-  
+  // category-modal
   return (
     <>
       <input type="checkbox" id="category-modal" className="modal-toggle" />
-      <div className="modal ">
-        <div className="modal-box bg-white">
-          <h3 className="font-bold text-lg">
-          </h3>
+      <div className="modal">
+        <div className="modal-box relative">
+          <label
+            htmlFor="category-modal"
+            className="btn btn-sm btn-circle absolute right-2 top-2"
+          >
+            ✕
+          </label>
+          <h3 className="text-lg font-bold">Book for - {name}</h3>
           <form onSubmit={handlerBooking} className="py-4">
             <input
               type="text"

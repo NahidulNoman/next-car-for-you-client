@@ -24,8 +24,8 @@ const UserContext = ({children}) => {
         return signInWithEmailAndPassword(auth,email,password);
     };
     const logOut = () => {
-        localStorage.removeItem('accessToken');
         setLoading(true);
+        localStorage.removeItem('token');
         return signOut(auth);
     };
     const userUpdateInfo = (profile) => {
