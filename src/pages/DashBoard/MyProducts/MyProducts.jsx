@@ -13,7 +13,8 @@ const MyProducts = () => {
         (res) => res.json()
       ),
   });
-  console.log(myProduct);
+  
+//   console.log(myProduct);
 
   return (
     <div className="overflow-x-auto mt-6">

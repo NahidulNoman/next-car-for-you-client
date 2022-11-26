@@ -7,7 +7,7 @@ const CategoriesDetails = () => {
     const categoriesDetails = useLoaderData();
     const [modal , setModal] = useState(null);
     
-    console.log(modal)
+    // console.log(modal)
     return (
         <div className='mx-5'>
             <h3 className='text-3xl font-bold text-accent mt-10'>Your Selected Car Details</h3>

@@ -1,14 +1,20 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import HomeCategory from './HomeCategory';
 
 const HomeCategories = () => {
     const [categories , setCategories] = useState([]);
     useEffect( () => {
-        fetch('http://localhost:5000/category')
-        .then(res => res.json())
+        // fetch('http://localhost:5000/category')
+        // .then(res => res.json())
+        // .then(data => {
+        //     setCategories(data)
+        //     // console.log(data)
+        // })
+        axios.get('http://localhost:5000/category')
         .then(data => {
-            setCategories(data)
-            // console.log(data)
+            const category = data.data;
+            setCategories(category)
         })
     },[])
     return (
