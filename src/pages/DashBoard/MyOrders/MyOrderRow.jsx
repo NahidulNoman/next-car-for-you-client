@@ -1,6 +1,6 @@
 import React from "react";
 
-const MyOrderRow = ({ book, setCheckout, checkout }) => {
+const MyOrderRow = ({ book, setCheckout }) => {
   const { image, item, price, email } = book;
 
   return (
@@ -20,13 +20,18 @@ const MyOrderRow = ({ book, setCheckout, checkout }) => {
         <td>{email}</td>
         <td>{price}$</td>
         <th>
-          <label
-            onClick={() => setCheckout(book)}
-            htmlFor="payment"
-            className="btn btn-primary btn-xs"
-          >
-            Pay
-          </label>
+          {book.price && !book.paid && (
+            <label
+              onClick={() => setCheckout(book)}
+              htmlFor="payment"
+              className="btn btn-primary btn-xs"
+            >
+              Pay
+            </label>
+          )}
+          {book.price && book.paid && (
+            <span className="text-green-500">Paid</span>
+          )}
         </th>
       </tr>
     </>

@@ -1,15 +1,27 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
-const Payment = ({ checkout }) => {
-  const { item, price } = checkout;
+const Payment = ({ checkout,refetch }) => {
+  const { item, price,email,_id } = checkout;
   const [cardError, setCardError] = useState("");
   const [clientSecret, setClientSecret] = useState("");
+  const [processing, setProcessing] = useState(false);
   const stripe = useStripe();
   const elements = useElements();
 
-  
-
+  useEffect(() => {
+    // Create PaymentIntent as soon as the page loads
+    fetch("http://localhost:5000/create-payment-intent", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ price }),
+    })
+      .then((res) => res.json())
+      .then((data) => setClientSecret(data.clientSecret));
+  }, [price]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -22,6 +34,7 @@ const Payment = ({ checkout }) => {
     if (card == null) {
       return;
     }
+    setProcessing(true)
     const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: "card",
       card,
@@ -32,7 +45,51 @@ const Payment = ({ checkout }) => {
       console.log(error);
     } else {
       setCardError("");
-    }
+    };
+
+    const { paymentIntent, error: confirmError } =
+      await stripe.confirmCardPayment(clientSecret, {
+        payment_method: {
+          card: card,
+          billing_details: {
+            name: "",
+            email: "",
+          },
+        },
+      });
+      if (confirmError) {
+        setCardError(error.message);
+        return;
+      };
+      console.log(paymentIntent)
+      if (paymentIntent.status === "succeeded") {
+        const payment = {
+          price,
+          transactionId: paymentIntent.id,
+          email,
+          bookingId: _id
+        };
+        fetch('http://localhost:5000/payment', {
+          method : 'POST',
+          headers : {
+              'content-type':'application/json'
+          },
+          body : JSON.stringify(payment)
+        })
+        .then(res => res.json())
+        .then(data => {
+          if (data.acknowledged) {
+            console.log(data);
+            toast.success('Congrats! your payment completed');
+            refetch();
+              // setSuccess('Congrats! your payment completed');
+              // setTransactionId(paymentIntent.id);
+          };
+        })
+      }
+      
+      setProcessing(false);
+      // console.log(paymentIntent);
   };
 
   return (
@@ -69,7 +126,7 @@ const Payment = ({ checkout }) => {
               <button
                 className="btn btn-primary btn-sm mt-5 mr-3"
                 type="submit"
-                disabled={!stripe}
+                disabled={!stripe || !clientSecret || processing}
               >
                 Pay
               </button>
