@@ -1,10 +1,16 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import MyOrderRow from "./MyOrderRow";
 import { AuthContext } from "../../../UserContext/UserContext";
+import Payment from "./Payment";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+
+const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_KEY);
 
 const MyOrders = () => {
   const {user} = useContext(AuthContext);
+  const [checkout , setCheckout] = useState(null);
   
   const { data: bookings = [] } = useQuery({
     queryKey: ["bookings",user?.email],
@@ -16,7 +22,7 @@ const MyOrders = () => {
       }).then((res) => res.json()),
   });
 
-  console.log(bookings);
+  // console.log(checkout);
   return (
     <div className="overflow-x-auto w-full b">
       <h4 className="text-3xl font-semibold mb-8 mt-8">My Orders</h4>
@@ -35,10 +41,21 @@ const MyOrders = () => {
         </thead>
         <tbody>
           {bookings?.map((book) => (
-            <MyOrderRow key={book._id} book={book}></MyOrderRow>
+            <MyOrderRow key={book._id} book={book} 
+            setCheckout={setCheckout}
+            checkout={checkout}
+            ></MyOrderRow>
           ))}
         </tbody>
       </table>
+     {
+      checkout &&  
+    <Elements stripe={stripePromise}>
+    <Payment 
+      checkout={checkout}
+    ></Payment>
+  </Elements>
+     }
     </div>
   );
 };
