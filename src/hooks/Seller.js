@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
 
 const Seller = email => {
     const [isSeller, setIsSeller] = useState(false);
