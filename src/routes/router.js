@@ -14,6 +14,8 @@ import AllSeller from "../pages/DashBoard/AllSeller/AllSeller";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import BuyerRoute from "./BuyerRoute";
 import SellerRoute from "./SellerRoute";
+import AdminRoute from "./AdminRoute";
+import AllBuyer from "../pages/DashBoard/AllSeller/AllBuyer";
 
 export const router = createBrowserRouter([
     {
@@ -67,7 +69,11 @@ export const router = createBrowserRouter([
             },
             {
                 path : '/dashboard/allSeller',
-                element : <AllSeller></AllSeller>
+                element : <AdminRoute><AllSeller></AllSeller></AdminRoute>
+            },
+            {
+                path : '/dashboard/allBuyer',
+                element : <AdminRoute><AllBuyer></AllBuyer></AdminRoute>
             },
         ]
     }

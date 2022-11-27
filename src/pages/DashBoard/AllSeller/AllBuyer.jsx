@@ -2,18 +2,18 @@ import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import toast from "react-hot-toast";
 
-const AllSeller = () => {
+const AllBuyer = () => {
 //   const [buyers, setBuyers] = useState([]);
   
-  const { data: allSellers = [], refetch } = useQuery({
-    queryKey: ["allSellers"],
+  const { data: allBuyers = [], refetch } = useQuery({
+    queryKey: ["allBuyers"],
     queryFn: () =>
-      fetch("http://localhost:5000/allSellers").then((res) => res.json()),
+      fetch("http://localhost:5000/allBuyers").then((res) => res.json()),
   });
-  console.log(allSellers);
+//   console.log(allBuyers);
 
   const handlerDelete = (id) => {
-    fetch(`http://localhost:5000/deleteSeller/${id}`, {
+    fetch(`http://localhost:5000/deleteBuyer/${id}`, {
         method : 'delete'
     })
     .then(res => res.json())
@@ -28,7 +28,7 @@ const AllSeller = () => {
  
   return (
       <div className="overflow-x-auto">
-         <h3 className='text-3xl font-semibold mt-5 mb-5'>All Sellers</h3>
+         <h3 className='text-3xl font-semibold mt-5 mb-5'>All Buyers</h3>
         <table className="table w-full">
           <thead>
             <tr>
@@ -41,7 +41,7 @@ const AllSeller = () => {
           </thead>
           <tbody>
             {
-                allSellers?.map((buyer,i) => <tr key={i}>
+                allBuyers?.map((buyer,i) => <tr key={i}>
                     <th>{i+1}</th>
                     <td>{buyer.name}</td>
                     <td>{buyer.email}</td>
@@ -57,4 +57,4 @@ const AllSeller = () => {
   );
 };
 
-export default AllSeller;
+export default AllBuyer;
