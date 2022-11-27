@@ -14,15 +14,21 @@ const MyOrders = () => {
 
   const { data: bookings = [], refetch } = useQuery({
     queryKey: ["bookings", user?.email],
-    queryFn: () =>
-      fetch(`http://localhost:5000/bookings?email=${user?.email}`, {
-        headers: {
-          authorization: `bearer ${localStorage.getItem("token")}`,
-        },
-      }).then((res) => res.json()),
+    queryFn: async () => {
+      const res = await fetch(
+        `http://localhost:5000/bookings?email=${user?.email}`,
+        {
+          headers: {
+            authorization: `bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
+      const data = await res.json();
+      return data;
+    },
   });
 
-  // console.log(checkout);
+  console.log(user?.email, bookings);
   return (
     <div className="overflow-x-auto w-full b">
       <h4 className="text-3xl font-semibold mb-8 mt-8">My Orders</h4>
@@ -40,19 +46,24 @@ const MyOrders = () => {
           </tr>
         </thead>
         <tbody>
-          {bookings?.map((book) => (
-            <MyOrderRow
-              key={book._id}
-              book={book}
-              setCheckout={setCheckout}
-              checkout={checkout}
-            ></MyOrderRow>
-          ))}
+          {bookings &&
+            bookings?.map(book => (
+              <MyOrderRow
+                key={book._id}
+                book={book}
+                setCheckout={setCheckout}
+                checkout={checkout}
+              ></MyOrderRow>
+            ))}
         </tbody>
       </table>
       {checkout && (
         <Elements stripe={stripePromise}>
-          <Payment checkout={checkout} refetch={refetch} setCheckout={setCheckout}></Payment>
+          <Payment
+            checkout={checkout}
+            refetch={refetch}
+            setCheckout={setCheckout}
+          ></Payment>
         </Elements>
       )}
     </div>
