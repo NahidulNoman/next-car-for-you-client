@@ -2,7 +2,7 @@ import React from "react";
 
 const Advertised = ({ ad }) => {
   const {image,sellerName,condition,description,name,mobile} = ad;
-  console.log(ad);
+  // console.log(ad);
   return (
     <div className="card bg-white shadow-xl">
       <figure>

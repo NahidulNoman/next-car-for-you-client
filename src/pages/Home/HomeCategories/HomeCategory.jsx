@@ -1,5 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
+// import audi from "../../../assets/audi.jpg";
+// import mar from "../../../assets/mar.jpg";
+// import ferrari from "../../../assets/ferrari.jpg";
 
 const HomeCategory = ({ category }) => {
   const { category_name } = category;

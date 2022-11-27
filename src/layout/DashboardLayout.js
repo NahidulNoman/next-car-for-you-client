@@ -5,7 +5,7 @@ import NavBar from "../pages/Share/NavBar/NavBar";
 
 const dashboardLayout = () => {
   return (
-    <div>
+    <div className="mx-2">
       <NavBar></NavBar>
       <div className="drawer drawer-mobile">
         <input

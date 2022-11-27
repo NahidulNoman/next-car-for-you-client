@@ -9,7 +9,7 @@ const HomeCategories = () => {
         // .then(res => res.json())
         // .then(data => {
         //     setCategories(data)
-        //     // console.log(data)
+            // console.log(data)
         // })
         axios.get('http://localhost:5000/category')
         .then(data => {

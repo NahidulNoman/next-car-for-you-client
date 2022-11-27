@@ -3,11 +3,12 @@ import { AuthContext } from "../../UserContext/UserContext";
 import loginImg from "../../assets/login.png";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import useToken from "../../hooks/useToken";
+import toast from "react-hot-toast";
 
 const SignUp = () => {
   const { createUser,userUpdateInfo,signInGoogle } = useContext(AuthContext);
-  const [createdUserEmail, setCreatedUserEmail] = useState('')
-  
+  const [createdUserEmail, setCreatedUserEmail] = useState('');
+
   const [token] = useToken(createdUserEmail);
   const location = useLocation();
   const navigate = useNavigate();
@@ -15,7 +16,7 @@ const SignUp = () => {
   const from = location.state?.from?.pathname || '/';
   if(token) {
     navigate(from , {replace : true});
-  }
+  };
 
     const handlerSubmit = (event) => {
         event.preventDefault();
@@ -34,7 +35,7 @@ const SignUp = () => {
         .catch(error => {
           console.log(error)
         })
-        console.log(name,email,select,password)
+        // console.log(name,email,select,password)
     };
     
     // update user name
@@ -66,6 +67,7 @@ const SignUp = () => {
       .then(res => res.json())
       .then(data => {
         if(data.acknowledged){
+          toast.success('successfully singup !!')
           setCreatedUserEmail(email);
         };
       })
@@ -83,16 +85,39 @@ const SignUp = () => {
     //   })
     // };
 
+   
      // sign in with google
      const handlerGoogle = () => {
       signInGoogle()
       .then(result => {
         const user = result.user;
         console.log(user);
-        navigate(from , {replace : true});
+        getGoogleUserRole();
       })
       .catch(error => {
         console.log(error);
+      })
+    };
+
+    // get google user role
+    const getGoogleUserRole = () => {
+      const users = {
+        role : 'Buyer',
+        userStatus : true,
+      };
+      fetch('http://localhost:5000/users', {
+        method : 'POST',
+        headers : {
+          'content-type' : 'application/json'
+        },
+        body : JSON.stringify(users)
+      })
+      .then(res => res.json())
+      .then(data => {
+        if(data.acknowledged){
+          console.log(data);
+          navigate(from , {replace : true});
+        };
       })
     };
 
@@ -115,6 +140,7 @@ const SignUp = () => {
                 type="text"
                 name="name"
                 placeholder="Name"
+                required
                 className="input input-bordered"
               />
             </div>
@@ -127,6 +153,7 @@ const SignUp = () => {
                 type="email"
                 name="email"
                 placeholder="Email"
+                required
                 className="input input-bordered"
               />
             </div>

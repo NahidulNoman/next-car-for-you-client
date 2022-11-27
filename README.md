@@ -14,7 +14,6 @@ Open [https://next-car-for-you.web.app/](https://next-car-for-you.web.app/) to v
 * You can read Article from `Blog` section.
 * This app is `Mobile` , `Tablet` and `Desktop` responsive.
 
-## FunFact This site has implement `Backend`
    
 ## Those technologies (frameworks, libraries) used in my project-
 

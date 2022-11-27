@@ -61,7 +61,7 @@ const Payment = ({ checkout,refetch,setCheckout }) => {
         setCardError(error.message);
         return;
       };
-      console.log(paymentIntent)
+      // console.log(paymentIntent)
       if (paymentIntent.status === "succeeded") {
         const payment = {
           price,
@@ -79,7 +79,7 @@ const Payment = ({ checkout,refetch,setCheckout }) => {
         .then(res => res.json())
         .then(data => {
           if (data.acknowledged) {
-            console.log(data);
+            // console.log(data);
             toast.success('Congrats! your payment completed');
             setCheckout(null);
             refetch();
