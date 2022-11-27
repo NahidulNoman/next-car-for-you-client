@@ -2,7 +2,7 @@ import React from "react";
 
 const CategoryDetails = ({ catDetails,setModal }) => {
     const {image,location,sellerName,name,description,condition,purchase,original_price,mobile,posted_time,price,years_used,} = catDetails;
-    console.log(catDetails);
+    // console.log(catDetails);
   return (
     <div className="hero bg-white mt-10 rounded-md mb-10">
       <div className="hero-content flex-col lg:flex-row">

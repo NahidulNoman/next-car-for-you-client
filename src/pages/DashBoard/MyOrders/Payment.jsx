@@ -2,11 +2,11 @@ import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
-const Payment = ({ checkout,refetch }) => {
+const Payment = ({ checkout,refetch,setCheckout }) => {
   const { item, price,email,_id } = checkout;
   const [cardError, setCardError] = useState("");
   const [clientSecret, setClientSecret] = useState("");
-  const [processing, setProcessing] = useState(false);
+  // const [processing, setProcessing] = useState(false);
   const stripe = useStripe();
   const elements = useElements();
 
@@ -34,7 +34,7 @@ const Payment = ({ checkout,refetch }) => {
     if (card == null) {
       return;
     }
-    setProcessing(true)
+    // setProcessing(true);
     const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: "card",
       card,
@@ -81,6 +81,7 @@ const Payment = ({ checkout,refetch }) => {
           if (data.acknowledged) {
             console.log(data);
             toast.success('Congrats! your payment completed');
+            setCheckout(null);
             refetch();
               // setSuccess('Congrats! your payment completed');
               // setTransactionId(paymentIntent.id);
@@ -88,7 +89,7 @@ const Payment = ({ checkout,refetch }) => {
         })
       }
       
-      setProcessing(false);
+      // setProcessing(false);
       // console.log(paymentIntent);
   };
 
@@ -96,7 +97,7 @@ const Payment = ({ checkout,refetch }) => {
     <>
       <input type="checkbox" id="payment" className="modal-toggle" />
       <div className="modal">
-        <div className="modal-box relative">
+        <div className="modal-box relative bg-white">
           <label
             htmlFor="payment"
             className="btn btn-sm btn-circle absolute right-2 top-2"
@@ -126,11 +127,13 @@ const Payment = ({ checkout,refetch }) => {
               <button
                 className="btn btn-primary btn-sm mt-5 mr-3"
                 type="submit"
-                disabled={!stripe || !clientSecret || processing}
+                disabled={!stripe || !clientSecret }
               >
                 Pay
               </button>
-              <span className="text-red-500">{cardError}</span>
+              {
+                cardError && <span className="text-red-500">{cardError}</span>
+              }
             </form>
           </p>
         </div>

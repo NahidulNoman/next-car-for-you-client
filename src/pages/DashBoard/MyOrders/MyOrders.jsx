@@ -52,7 +52,7 @@ const MyOrders = () => {
       </table>
       {checkout && (
         <Elements stripe={stripePromise}>
-          <Payment checkout={checkout} refetch={refetch}></Payment>
+          <Payment checkout={checkout} refetch={refetch} setCheckout={setCheckout}></Payment>
         </Elements>
       )}
     </div>

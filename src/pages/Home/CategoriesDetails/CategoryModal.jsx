@@ -37,7 +37,7 @@ const CategoryModal = ({ modal, setModal }) => {
       .then((res) => res.json())
       .then((data) => {
         if (data.acknowledged) {
-          toast.success("Successfully toasted!");
+          toast.success("Successfully booked!");
           setModal(null);
         }
       });
@@ -48,7 +48,7 @@ const CategoryModal = ({ modal, setModal }) => {
     <>
       <input type="checkbox" id="category-modal" className="modal-toggle" />
       <div className="modal">
-        <div className="modal-box relative">
+        <div className="modal-box relative bg-white">
           <label
             htmlFor="category-modal"
             className="btn btn-sm btn-circle absolute right-2 top-2"
