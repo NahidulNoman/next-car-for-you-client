@@ -1,3 +1,7 @@
+adminEmail: nahidulna5@gmail.com
+
+adminPassword: 111111
+
 # Getting Started And Buy/Sell something in `NEXT CAR FOR YOU`
 
 ## This website name is `next car for you`
