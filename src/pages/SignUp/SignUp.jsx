@@ -123,7 +123,7 @@ const SignUp = () => {
 
   return (
     <div >
-        <h2 className="text-4xl font-bold text-primary text-center lg:m-16">|| Sign Up Here ||</h2>
+        <h2 className="text-4xl font-bold text-primary text-center mt-8 lg:m-16">|| Sign Up Here ||</h2>
         <div className="hero">
       <div className="hero-content flex-col lg:flex-row-reverse">
         <div className="text-center lg:text-left lg:ml-32">

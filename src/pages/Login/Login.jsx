@@ -74,7 +74,7 @@ const Login = () => {
 
   return (
     <div>
-      <h2 className="text-4xl font-bold text-primary text-center lg:m-16">
+      <h2 className="text-4xl font-bold text-primary text-center mt-8 lg:m-16">
         || Log In Here ||
       </h2>
       <div className="hero">

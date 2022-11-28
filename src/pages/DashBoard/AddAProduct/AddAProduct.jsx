@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../UserContext/UserContext";
 
 const AddAProduct = () => {
-  const {user} = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handlerAddProduct = (event) => {
@@ -23,42 +23,42 @@ const AddAProduct = () => {
     const description = form.description.value;
 
     const productDetails = {
-        name,
-        price,
-        mobile,
-        condition,
-        email,
-        sellerName,
-        image,
-        category_id ,
-        location,
-        purchase,
-        description
+      name,
+      price,
+      mobile,
+      condition,
+      email,
+      sellerName,
+      image,
+      category_id,
+      location,
+      purchase,
+      description,
     };
-    
-    console.log(productDetails)
 
-    fetch('http://localhost:5000/addProduct', {
-        method : 'POST',
-        headers : {
-            'content-type' : 'application/json'
-        },
-        body : JSON.stringify(productDetails)
+    // console.log(productDetails);
+
+    fetch("http://localhost:5000/addProduct", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(productDetails),
     })
-    .then(res => res.json())
-    .then(data => {
-        if(data.acknowledged){
-            toast.success('your product successfully added!!');
-            navigate('/dashboard/myProduct')
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.acknowledged) {
+          toast.success("your product successfully added!!");
+          navigate("/dashboard/myProduct");
         }
-    })
+      });
 
     // console.log(productDetails);
   };
 
   return (
     <div className="bg-white mt-10 p-5 shadow-lg rounded-md">
-        <h3 className="text-3xl pl-8 font-bold">Add Product</h3>
+      <h3 className="text-3xl pl-8 font-bold">Add Product</h3>
       <form onSubmit={handlerAddProduct} className="card-body">
         <div className="form-control">
           <label className="label">
@@ -107,7 +107,6 @@ const AddAProduct = () => {
           </select>
         </div>
 
-
         <div className="form-control w-full">
           <label className="label">
             <span className="label-text font-semibold">Product Category</span>
@@ -118,7 +117,6 @@ const AddAProduct = () => {
             <option>Mercedes</option>
           </select>
         </div>
-
 
         <div className="form-control mb-4">
           <label className="label">

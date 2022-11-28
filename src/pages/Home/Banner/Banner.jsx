@@ -34,7 +34,7 @@ const Banner = () => {
           </div>
         </div>
         <div className="lg:w-1/2 ">
-          <h2 className="lg:text-5xl font-bold mb-5">Easy And Fast Way To <br /> Buy & Sell Car On Our <br /> Platform</h2>
+          <h2 className="text-3xl lg:text-5xl font-bold mb-5">Easy And Fast Way To <br /> Buy & Sell Car On Our <br /> Platform</h2>
           <p className="text-md font-semibold">
             We will help you sell or buy your dream car here easily and quickly <br /> this is reliable.
           </p>
