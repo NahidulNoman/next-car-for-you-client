@@ -8,12 +8,12 @@ const AllBuyer = () => {
   const { data: allBuyers = [], refetch } = useQuery({
     queryKey: ["allBuyers"],
     queryFn: () =>
-      fetch("http://localhost:5000/allBuyers").then((res) => res.json()),
+      fetch("https://hit-the-road-server.vercel.app/allBuyers").then((res) => res.json()),
   });
 //   console.log(allBuyers);
 
   const handlerDelete = (id) => {
-    fetch(`http://localhost:5000/deleteBuyer/${id}`, {
+    fetch(`https://hit-the-road-server.vercel.app/deleteBuyer/${id}`, {
         method : 'delete'
     })
     .then(res => res.json())

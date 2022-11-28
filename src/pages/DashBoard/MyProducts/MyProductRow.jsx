@@ -14,7 +14,7 @@ const MyProductRow = ({ product, i, refetch }) => {
     // }
     // console.log(all);
     // console.log('allProduct', allProduct)
-    fetch("http://localhost:5000/homeProducts", {
+    fetch("https://hit-the-road-server.vercel.app/homeProducts", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -32,7 +32,7 @@ const MyProductRow = ({ product, i, refetch }) => {
   // handler delete
   const handlerDelete = (id) => {
     // console.log(id)
-    fetch(`http://localhost:5000/myProduct/${id}`, {
+    fetch(`https://hit-the-road-server.vercel.app/myProduct/${id}`, {
       method: "delete",
       headers : {
         authorization: `Bearer ${localStorage.getItem("token")}`,

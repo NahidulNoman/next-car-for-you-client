@@ -27,7 +27,7 @@ const CategoryModal = ({ modal, setModal }) => {
       location,
       image,
     };
-    fetch("http://localhost:5000/bookings", {
+    fetch("https://hit-the-road-server.vercel.app/bookings", {
       method: "POST",
       headers: {
         "content-type": "application/json",

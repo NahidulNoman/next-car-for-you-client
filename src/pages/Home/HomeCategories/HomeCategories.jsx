@@ -5,13 +5,13 @@ import HomeCategory from './HomeCategory';
 const HomeCategories = () => {
     const [categories , setCategories] = useState([]);
     useEffect( () => {
-        // fetch('http://localhost:5000/category')
+        // fetch('https://hit-the-road-server.vercel.app/category')
         // .then(res => res.json())
         // .then(data => {
         //     setCategories(data)
             // console.log(data)
         // })
-        axios.get('http://localhost:5000/category')
+        axios.get('https://hit-the-road-server.vercel.app/category')
         .then(data => {
             const category = data.data;
             setCategories(category)

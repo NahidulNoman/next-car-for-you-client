@@ -57,7 +57,7 @@ const SignUp = () => {
         role : select,
         email : email
       };
-      fetch('http://localhost:5000/users', {
+      fetch('https://hit-the-road-server.vercel.app/users', {
         method : 'POST',
         headers : {
           'content-type' : 'application/json'
@@ -75,7 +75,7 @@ const SignUp = () => {
 
      // get access token
     // const getUserToken = email => {
-    //   fetch(`http://localhost:5000/jwt?email=${email}`)
+    //   fetch(`https://hit-the-road-server.vercel.app/jwt?email=${email}`)
     //   .then(res => res.json())
     //   .then(data => {
     //     if(data.accessToken){
@@ -105,7 +105,7 @@ const SignUp = () => {
         role : 'Buyer',
         userStatus : true,
       };
-      fetch('http://localhost:5000/users', {
+      fetch('https://hit-the-road-server.vercel.app/users', {
         method : 'POST',
         headers : {
           'content-type' : 'application/json'

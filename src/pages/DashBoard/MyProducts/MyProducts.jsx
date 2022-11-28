@@ -9,7 +9,7 @@ const MyProducts = () => {
   const { data: myProduct , refetch } = useQuery({
     queryKey: ["myProduct", user?.email],
     queryFn: () =>
-      fetch(`http://localhost:5000/myProduct?email=${user?.email}`,{
+      fetch(`https://hit-the-road-server.vercel.app/myProduct?email=${user?.email}`,{
         headers : {
           authorization: `Bearer ${localStorage.getItem("token")}`,
         }

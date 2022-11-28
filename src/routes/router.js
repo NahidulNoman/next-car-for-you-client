@@ -45,7 +45,7 @@ export const router = createBrowserRouter([
             },
             {
                 path : '/categories/:category',
-                loader: ({params}) => fetch(`http://localhost:5000/categoryDetails/${params.category}`),
+                loader: ({params}) => fetch(`https://hit-the-road-server.vercel.app/categoryDetails/${params.category}`),
                 element : <PrivateRoute><CategoriesDetails></CategoriesDetails></PrivateRoute>
             },
         ]

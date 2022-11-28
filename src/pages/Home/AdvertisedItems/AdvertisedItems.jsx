@@ -6,7 +6,7 @@ const AdvertisedItems = () => {
     const {user} = useContext(AuthContext);
     const [advertised , setAdvertised] = useState([]);
     useEffect(() => {
-        fetch(`http://localhost:5000/homeProducts?email=${user?.email}`,{
+        fetch(`https://hit-the-road-server.vercel.app/homeProducts?email=${user?.email}`,{
             headers : {
                 authorization: `Bearer ${localStorage.getItem("token")}`,
             }

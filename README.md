@@ -1,6 +1,6 @@
-adminEmail: nahidulna5@gmail.com
+adminEmail: nahidulna5@gmail.com || lal@miah.com || web2@sdfj.com
 
-adminPassword: 111111
+adminPassword: 111111 || 111111 || 111111
 
 # Getting Started And Buy/Sell something in `NEXT CAR FOR YOU`
 

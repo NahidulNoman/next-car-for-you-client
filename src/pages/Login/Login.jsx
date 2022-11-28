@@ -56,7 +56,7 @@ const Login = () => {
       role: "Buyer",
       userStatus : true,
     };
-    fetch("http://localhost:5000/users", {
+    fetch("https://hit-the-road-server.vercel.app/users", {
       method: "POST",
       headers: {
         "content-type": "application/json",
